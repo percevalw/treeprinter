@@ -24,7 +24,7 @@ class TestTreeTextBlock(TestCase):
         self.assertEqual(self.ttb1.width, 17)
 
     def test_merge_h_center(self):
-        new_ttb = TreeTextBlock.merge_h(self.ttb1, self.ttb2, anchor_merge_dir=Alignment.CENTER)
+        new_ttb = TreeTextBlock.merge_h([self.ttb1, self.ttb2], anchor_merge_dir=Alignment.CENTER)
         self.assertListEqual(new_ttb.lines, [
             "The cat has      The dog lives   ",
             "eaten all of the in a tiny house ",
@@ -34,11 +34,11 @@ class TestTreeTextBlock(TestCase):
         self.assertEqual(new_ttb.anchor, 12)
 
     def test_merge_h_start(self):
-        new_ttb = TreeTextBlock.merge_h(self.ttb1, self.ttb2, anchor_merge_dir=Alignment.START)
+        new_ttb = TreeTextBlock.merge_h([self.ttb1, self.ttb2], anchor_merge_dir=Alignment.START)
         self.assertEqual(new_ttb.anchor, 2)
 
     def test_merge_v(self):
-        new_ttb = TreeTextBlock.merge_v(self.ttb1, self.ttb2)
+        new_ttb = TreeTextBlock.merge_v([self.ttb1, self.ttb2])
         self.assertListEqual(new_ttb.lines, [
              '   The cat has      ',
              '   eaten all of the ',

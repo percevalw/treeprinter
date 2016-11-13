@@ -30,7 +30,7 @@ class TreeTextBlock(object):
         return '\n'.join(self.lines)
 
     @staticmethod
-    def merge_h(*blocks, anchor_merge_dir=Alignment.CENTER, func=None):
+    def merge_h(blocks, anchor_merge_dir=Alignment.CENTER, func=None):
         """
         Merges multiple anchored text blocks horizontally, computing the new anchor either either aligned
          to the left, the right or the center of all the blocks
@@ -53,10 +53,10 @@ class TreeTextBlock(object):
             new_anchor = int((sum(b.width for b in blocks)
                               - blocks[0].before_anchor
                               - blocks[-1].after_anchor) / 2) + blocks[0].before_anchor
-        return TreeTextBlock(merge_h(*(b.lines for b in blocks), dir_y=Alignment.START), new_anchor)
+        return TreeTextBlock(merge_h(list(b.lines for b in blocks), dir_y=Alignment.START), new_anchor)
 
     @staticmethod
-    def merge_v(*blocks, func=None):
+    def merge_v(blocks, func=None):
         """
         Merges multiple anchored text blocks horizontally keeping their anchor aligned
         :param blocks: The blocks to merge
@@ -124,11 +124,11 @@ class BaseTreePrinter(object):
             if len(children) == 1:
                 bottom_block = self.to_tree_text_block(children[0])
             else:
-                bottom_block = TreeTextBlock.merge_h(*[self.to_tree_text_block(c) for c in children],
+                bottom_block = TreeTextBlock.merge_h([self.to_tree_text_block(c) for c in children],
                                                      anchor_merge_dir=self.alignment, func=decorate_top)
-            t = TreeTextBlock.merge_v(text_block,
-                                      mid_block,
-                                      bottom_block)
+            t = TreeTextBlock.merge_v([text_block,
+                                       mid_block,
+                                       bottom_block])
         return t
 
     def pformat(self, tree):

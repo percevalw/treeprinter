@@ -81,14 +81,14 @@ def pad_2d(element, pad=" ", size_x=0, size_y=0, padding_x=(0, 0), margin_x=(0, 
     return ret
 
 
-def merge_h(*elements_2d, dir_x=Alignment.CENTER, dir_y=Alignment.START):
+def merge_h(elements_2d, dir_x=Alignment.CENTER, dir_y=Alignment.START):
     size_y = max(map(len, elements_2d))
     padded_elements = [pad_2d(b, size_y=size_y, padding_x=(0, 0), dir_x=dir_x, dir_y=dir_y) for b in elements_2d]
     concat_lines = zip(*padded_elements)
     return list(map("".join, concat_lines))
 
 
-def merge_v(*elements_2d, dir_x=Alignment.CENTER, dir_y=Alignment.START):
+def merge_v(elements_2d, dir_x=Alignment.CENTER, dir_y=Alignment.START):
     size_x = max(map(len, [e[0] for e in elements_2d]))
     padded_elements = [pad_2d(b, size_x=size_x, dir_x=dir_x, dir_y=dir_y) for b in elements_2d]
     concat_lines = [line for element in padded_elements for line in element]
