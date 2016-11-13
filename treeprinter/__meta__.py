@@ -5,7 +5,7 @@ __title__ = 'treeprinter'
 
 __summary__ = 'Python library for easy tree displaying'
 
-__site__ = 'https://github.com/percevalw/treeprinter.git'
+__site__ = 'https://github.com/percevalw/treeprinter'
 
 __version__ = '0.0.1'
 
