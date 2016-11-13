@@ -7,7 +7,7 @@ __summary__ = 'Python library for easy tree displaying'
 
 __site__ = 'https://github.com/percevalw/treeprinter'
 
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 
 __author__ = 'Perceval Wajsburt'
 
