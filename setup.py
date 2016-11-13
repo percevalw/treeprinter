@@ -38,5 +38,6 @@ setup(
     author_email=__email__,
     description=__summary__,
     long_description=README,
-    classifiers=CLASSIFIERS
+    classifiers=CLASSIFIERS,
+    package_data={'treeprinter': ['./README.md']},
 )
